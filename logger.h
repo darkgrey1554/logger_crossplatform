@@ -8,6 +8,7 @@
 #include <exception>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -75,7 +76,7 @@ namespace LoggerSpace
         
         int SizeLogFile = 1 * 1024 * 1024;    // max size log file
         LogMode ModeLog = LogMode::DEBUG;     // mode  logger
-        int DayWrite = 1;                     // maximum duration of file recording (days)
+        std::atomic<unsigned int> DayWrite = 1;                     // maximum duration of file recording (days)
        
         
         
@@ -117,14 +118,15 @@ namespace LoggerSpace
         static Logger* p_contact;
         static std::mutex MutLogInit;  
             
-    public:
-
-              
+    public:      
 
         static Logger* getpointcontact(const char* NameLog = "log"); // access to class
 
         void SetSizeFile(int baits);  // get set max size log-file
         int GetSizeFile();
+
+        void SetSizePeriodTime(unsigned int days);
+        unsigned int GetSizePeriodTime();
 
         void SetLogMode(LoggerSpace::LogMode mode); // get set mode log
         LoggerSpace::LogMode GetLogMode();
@@ -133,7 +135,7 @@ namespace LoggerSpace
 
         void SetNameLog(const char* str);  // get set name log
         void SetNameSysLog(const char* str);
-
+        
         void TurnOnLog(); // turnon turnoff write to file
         void TurnOffLog();
         void TurnOnSysLog();

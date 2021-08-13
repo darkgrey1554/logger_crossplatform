@@ -2,7 +2,7 @@
 D:\CATE_WORK\logger_crossplatform\logger.cpp(445,82): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
   logger_crossplatform.cpp
   Создание кода
-  Previous IPDB not found, fall back to full compilation.
-  All 325 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 336 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Создание кода завершено
   logger_crossplatform.vcxproj -> D:\CATE_WORK\logger_crossplatform\x64\Release\logger_crossplatform.exe

@@ -400,7 +400,7 @@ namespace LoggerSpace
                #endif
                 t1 = t1 / 1000 / 1000 / 10 / 60 / 60 / 24;
                 t2 = t2 / 1000 / 1000 / 10 / 60 / 60 / 24;
-                if ((t2 - t1) >= DayWrite)
+                if ((t2 - t1) >= DayWrite.load())
                 {
                     str.clear();
                     str = NameFile;
@@ -736,6 +736,16 @@ namespace LoggerSpace
     int Logger::GetSizeFile()
     {
         return SizeLogFile;
+    }
+
+    void Logger::SetSizePeriodTime(unsigned int days)
+    {
+        DayWrite.store(days);
+    }
+
+    unsigned int Logger::GetSizePeriodTime()
+    {
+        return DayWrite.load();
     }
        
     LoggerSpace::Status Logger::GetStatusLog()
